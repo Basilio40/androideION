@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="login-logo">
+      <img src="assets/img/LogoVG.png" alt="Ionic logo">
+   </div>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fundo">
+  <!-- <div class="login-logo">
+     <img src="assets/img/LogoVG.png" alt="Ionic logo">
+  </div> -->
+
+  <ion-grid *ngIf="dados" class="personalizando">
+    <ion-row class="saudacao" #saudacao>
+      <ion-col>
+        <ion-text color="danger"><h2>Seja bem vindo,<br><strong>{{dados.data.nome}}!</strong></h2></ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="txt" #txt>
+      <ion-col>
+        <!-- caso somente inquilino -->
+        <ion-text *ngIf="imoveisInquilino?.length > 0 && imoveisProprietario?.length == 0" color="danger"><h3>Você é inquilino de {{imoveisInquilino.length}} {{imoveisInquilino.length == 1 ? 'imóvel' : 'imóveis' }}.</h3></ion-text>
+
+        <!-- caso somente proprietário -->
+
+        <ion-text *ngIf="imoveisInquilino?.length == 0 && imoveisProprietario?.length > 0" color="danger"><h3>Você é proprietário de {{imoveisProprietario.length}} {{imoveisProprietario.length == 1 ? 'imóvel' : 'imóveis' }}.</h3></ion-text>
+
+        <!-- caso inquilino e proprietário -->
+        <ion-text *ngIf="imoveisInquilino?.length > 0 && imoveisProprietario?.length > 0" color="danger"><h3>Você é proprietário de {{imoveisProprietario.length}} {{imoveisProprietario.length == 1 ? 'imóvel' : 'imóveis' }} e inquilino de {{imoveisInquilino.length}} {{imoveisInquilino.length == 1 ? 'imóvel' : 'imóveis' }}.</h3></ion-text>
+
+        <!-- caso não tenha nehum dos dois -->
+        <ion-text *ngIf="imoveisInquilino?.length == 0 && imoveisProprietario?.length == 0" color="danger"><h3>Desculpe, não encontramos nenhum imóvel seu registrado no sistema.</h3></ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="botoes" #botoes>
+      <ion-col>
+        <ion-button (click)="acessarProprietario()" *ngIf="imoveisProprietario?.length > 0" color="danger" expand="block">Acessar área do proprietário</ion-button>
+        <ion-button (click)="acessarInquilino()" *ngIf="imoveisInquilino?.length > 0" color="danger" expand="block">Acessar área do inquilino</ion-button>
+        <ion-button (click)="logout()" color="light" expand="block">Fazer Logout</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

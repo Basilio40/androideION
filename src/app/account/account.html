@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Dados Contratuais</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list *ngIf="dadosUsuario">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input [disabled]="true" placeholder="Digite seu nome" [value]="dadosUsuario.data.nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [disabled]="true" placeholder="Digite seu email" [value]="dadosUsuario.data.email"></ion-input>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input placeholder="Digite seu telefone"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Região</ion-label>
+      <ion-select placeholder="Selecione uma">
+        <ion-select-option value="no">Norte</ion-select-option>
+        <ion-select-option value="ne">Nordeste</ion-select-option>
+        <ion-select-option value="co">Centro-Oeste</ion-select-option>
+        <ion-select-option value="se">Sudeste</ion-select-option>
+        <ion-select-option value="su">Sul</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Cidade</ion-label>
+      <ion-select placeholder="Selecione uma">
+        <ion-select-option value="no">São Paulo</ion-select-option>
+        <ion-select-option value="ne">Belo Horizonte</ion-select-option>
+        <ion-select-option value="co">Rio de Janeiro</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">CEP</ion-label>
+      <ion-input placeholder="Digite seu CEP"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Observações</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item> -->
+  </ion-list>
+  
+  <!-- <ion-button expand="full">Salvar</ion-button> -->
+
+</ion-content>

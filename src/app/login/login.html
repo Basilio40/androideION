@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><img src="assets/img/LogoVG1.png" alt="Ionic logo"></ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fundo">
+  <br>
+  <br>
+  <br>
+  <ion-card style="background: opacity;" class="login-logo shadow" >
+    <form #loginForm="ngForm" novalidate>
+
+
+      <ion-list>
+        <ion-item >
+          <ion-label position="stacked" color="danger"  mode="ios" >CNPJ/CPF</ion-label>
+          <ion-input [(ngModel)]="login.email" name="username" type="email" #username="ngModel" spellcheck="false" autocapitalize="off"
+            required >
+          </ion-input>
+        </ion-item>
+
+        <ion-text color="danger">
+          <p [hidden]="username.valid || submitted == false" class="ion-padding-start small ">
+            Email é obrigatório
+          </p>
+        </ion-text>
+
+        <ion-item>
+          <ion-label position="stacked" color="danger"  mode="ios" >Senha</ion-label>
+          <ion-input [(ngModel)]="login.senha" name="password" type="password" #password="ngModel" required>
+          </ion-input>
+        </ion-item>
+
+        <ion-text color="danger">
+          <p [hidden]="password.valid || submitted == false" class="ion-padding-start small">
+            Senha é obrigatória
+          </p>
+        </ion-text>
+      </ion-list>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="onLogin(loginForm)" type="submit" color="danger" expand="block" mode="ios" >Login</ion-button>
+        </ion-col>
+        <!-- <ion-col>
+          <ion-button color="light" expand="block">Inscreva-se</ion-button>
+        </ion-col> -->
+      </ion-row>
+      </form>
+</ion-card>
+</ion-content>

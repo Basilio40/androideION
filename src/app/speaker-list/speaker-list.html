@@ -1,0 +1,60 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons *ngIf="!showSearchbar" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="!ios && !showSearchbar"></ion-title>
+    <img src="assets/img/LogoVG.png" slot="end" style="width:240px; height:80px;" slot="start">
+    <!-- <ion-buttons slot="end">
+      <ion-button *ngIf="!ios && !showSearchbar" (click)="showSearchbar = true">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+       <ion-button *ngIf="!showSearchbar" (click)="presentFilter()">
+        <span *ngIf="ios">Filtro</span>
+        <span *ngIf="!ios">
+          <ion-icon slot="icon-only" name="options"></ion-icon>
+        </span>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fundo" fullscreen="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Documentos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <ion-list #scheduleList>
+    <ion-item-group *ngFor="let imovel of imoveis; let i of index">
+      <ion-item-divider color="danger" sticky>
+        <ion-label>
+          {{imovel.endereco}} - {{imovel.bairro}}
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item detail (click)="openPDF(contrato.contrato)" *ngFor="let contrato of imovel.contratos">
+        <ion-label>
+          <h3>{{contrato.inicio}} - {{contrato.fim}}</h3>
+          <p>
+            Vencimento dia {{contrato.vencimento}}
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="imovel.contratos[0].vistoria != ''" (click)="openPDF(imovel.contratos[0].vistoria)">
+        <ion-label detail class="vistoria">
+          <h3>Abrir vistoria</h3>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+
+  <ion-list-header [hidden]="true">
+    Nenhum imóvel encontrado
+  </ion-list-header>
+
+</ion-content>

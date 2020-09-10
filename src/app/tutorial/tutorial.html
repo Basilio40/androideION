@@ -1,0 +1,47 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="false">
+    <ion-slide>
+      <img src="assets/img/chaveiro cópia.png" class="slide-image" />
+      <h2 class="slide-title">
+        Bem Vindo a
+        <b>Visão Global</b>
+      </h2>
+      <p>
+
+        <b>Ética</b><b>Lisura e Presteza tem Nome !</b>
+        use.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/home.png" class="slide-image" />
+      <h2 class="slide-title">Administre</h2>
+      <p>
+        <b>Administre o seu imovel ou mantenha-se atualizado sobre sua locação </b> </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/pesquisa.png" class="slide-image" />
+      <h2 class="slide-title">Pesquise</h2>
+      <p>
+        <b>Pesquise os documentos necessarios</b></p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/pasta.png" class="slide-image" />
+      <h2 class="slide-title">Vamos lá </h2>
+      <ion-button fill="clear" (click)="startApp()">
+        Continue
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,33 @@
+.login-logo {
+  border-radius: 10px;
+  vertical-align: center;
+  min-height: 200px;
+  text-align: center;
+  background: #DCDCDC;
+  opacity: 0.7;
+  width: 90%;
+}
+
+.login-logo img {
+  vertical-align: center;
+  text-align: center;
+  max-width: 200px;
+  padding-top: 30px;
+}
+
+ion-list {
+  margin-bottom: 0;
+  --background: transparent;
+}
+.list-md{
+  background: transparent !important;
+}
+.item {
+  --background:transparent;
+  color: #000;
+}
+
+.shadow{
+  color: #0c0c0dcc;
+  border-bottom: solid 5px;
+}

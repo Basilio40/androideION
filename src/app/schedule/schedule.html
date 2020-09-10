@@ -1,0 +1,57 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons *ngIf="!showSearchbar" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="!ios && !showSearchbar"></ion-title>
+      <img src="assets/img/LogoVG.png" slot="end" style="width:240px; height:80px;" slot="start">
+    <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText" (ionChange)="updateImoveis()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar>
+    <!-- <ion-buttons slot="end">
+      <ion-button *ngIf="!ios && !showSearchbar" (click)="showSearchbar = true">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+       <ion-button *ngIf="!showSearchbar" (click)="presentFilter()">
+        <span *ngIf="ios">Filtro</span>
+        <span *ngIf="!ios">
+          <ion-icon slot="icon-only" name="options"></ion-icon>
+        </span>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fundo" fullscreen="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Imóveis</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar [(ngModel)]="queryText" (ionChange)="updateImoveis()" placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <ion-list #scheduleList>
+    <ion-item-group>
+      <ion-item-divider sticky>
+        <ion-label>
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item *ngFor="let imovel of imoveis; let i of index">
+        <ion-label>
+          <h3>{{imovel.tipo}} em {{imovel.cidade}}</h3>
+          <p>
+            {{imovel.endereco}} - {{imovel.bairro}}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-list-header [hidden]="true">
+    Nenhum imóvel encontrado
+  </ion-list-header>
+
+</ion-content>
