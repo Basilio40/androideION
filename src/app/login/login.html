@@ -1,7 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title><img src="assets/img/LogoVG1.png" alt="Ionic logo"></ion-title>
-
+    <ion-title>
+      <img src="assets/img/LogoVG1.png" alt="Ionic logo">
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +12,6 @@
   <br>
   <ion-card style="background: opacity;" class="login-logo shadow" >
     <form #loginForm="ngForm" novalidate>
-
 
       <ion-list>
         <ion-item >
@@ -44,9 +44,6 @@
         <ion-col>
           <ion-button (click)="onLogin(loginForm)" type="submit" color="danger" expand="block" mode="ios" >Login</ion-button>
         </ion-col>
-        <!-- <ion-col>
-          <ion-button color="light" expand="block">Inscreva-se</ion-button>
-        </ion-col> -->
       </ion-row>
       </form>
 </ion-card>

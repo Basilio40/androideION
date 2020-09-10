@@ -1,9 +1,9 @@
-import { Component, ElementRef, Inject, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { ApiLoginService } from './../services/api-service/api-login.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Config, IonList } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Storage } from '@ionic/storage';
-import { ApiLoginService } from '../../api-login.service';
 
 @Component({
   selector: 'page-informes',
@@ -25,12 +25,12 @@ export class InformesPage implements OnInit {
   informes: any = [];
 
   constructor(
-    public router: Router,
-    public config: Config,
-    private storage: Storage,
+    public loginService: ApiLoginService,
     private iab: InAppBrowser,
-    public loginService: ApiLoginService
-  ) {
+    private storage: Storage,
+    public config: Config,
+    public router: Router
+  ){
     loginService.loginEmitter$.subscribe(login => {
       console.log("AVISOU", login)
       login ? this.updateImoveis() : this.onLogout()
@@ -38,7 +38,6 @@ export class InformesPage implements OnInit {
    }
 
   ngOnInit() {
-
     this.ios = this.config.get('mode') === 'ios';
   }
 

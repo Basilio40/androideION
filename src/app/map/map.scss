@@ -15,9 +15,8 @@ ion-fab-button {
 }
 
 .fundo{
-  --background: url('../../assets/img/visaoglobal2.jpg')top center cover no-repeat;
+  --background: url('../../assets/img/visaoglobal2.jpg') top center cover no-repeat !important;
 }
-
 $categories: (
   ionic: var(--ion-color-primary),
   angular: #ac282b,
@@ -39,39 +38,11 @@ $categories: (
 }
 
 ion-item ion-label{
-  border-left: 2px solid #ac282b;
+  border-left: 2px solid #69bb7b;
   padding-left: 10px;
 }
 
-.vist{
-  text-align: center;
-  padding-top: 20vh;
-  font-weight: bolder;
-}
-.text {
-  vertical-align: center;
-  text-align: center;
-}
-.shadow{
-  text-shadow: 0.1em 0.1em #333;
-}
-.login-logo {
-  border-radius: 10px;
-  vertical-align: center;
-  min-height: 100px;
-  text-align: center;
-  background: #000000;
-  opacity: 0.7;
-  width: 90%;
-}
-.login-logo img {
-  vertical-align: center;
-  text-align: center;
-  max-width: 200px;
-  padding-top: 30px;
-}
-
-.whatsImage{
-  width: 64px;
-  height: auto;
+ion-item .boleto{
+  border-left: 2px solid #fed035 !important;
+  padding-left: 10px;
 }

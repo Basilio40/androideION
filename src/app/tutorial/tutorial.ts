@@ -1,9 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-
 import { MenuController, IonSlides } from '@ionic/angular';
-
+import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-tutorial',
@@ -17,14 +15,14 @@ export class TutorialPage {
 
   constructor(
     public menu: MenuController,
-    public router: Router,
-    public storage: Storage
-  ) {}
+    public storage: Storage,
+    public router: Router
+  ){    
+  }
 
   startApp() {
-    this.router
-      .navigateByUrl('/app/tabs/schedule', { replaceUrl: true })
-      .then(() => this.storage.set('ion_did_tutorial', true));
+    this.router.navigateByUrl('/app/tabs/schedule', { replaceUrl: true })
+    .then(() => this.storage.set('ion_did_tutorial', true));
   }
 
   onSlideChangeStart(event) {
@@ -39,7 +37,6 @@ export class TutorialPage {
         this.router.navigateByUrl('/app/tabs/schedule', { replaceUrl: true });
       }
     });
-
     this.menu.enable(false);
   }
 

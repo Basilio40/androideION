@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "com.SandroBispo.Visao",
   "appName": "visao_ios",
   "bundledWebRuntime": false,
   "npmClient": "npm",

@@ -1,8 +1,9 @@
+import { MenuController, AnimationController, NavController } from '@ionic/angular';
+import { ApiLoginService } from './../services/api-service/api-login.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Storage } from '@ionic/storage'
-import { ApiLoginService } from '../../api-login.service';
-import { MenuController, Animation, AnimationController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-personalizar',
   templateUrl: './personalizar.page.html',
@@ -11,8 +12,14 @@ import { Router } from '@angular/router';
 
 export class PersonalizarPage implements OnInit {
 
-  constructor(private storage: Storage, public loginService: ApiLoginService,
-    public menuCtrl: MenuController, public router: Router, private animationCtrl: AnimationController, private eRef: ElementRef, private navCtrl: NavController) { 
+  constructor(
+    private animationCtrl: AnimationController, 
+    public loginService: ApiLoginService,
+    public menuCtrl: MenuController, 
+    private navCtrl: NavController,
+    private storage: Storage,
+    public router: Router, 
+  ){
     loginService.loginEmitter$.subscribe(login => {
       login ? this.update() : this.onLogout()
     })
@@ -27,8 +34,7 @@ export class PersonalizarPage implements OnInit {
   @ViewChild("txt", {read: ElementRef, static: false}) txt: ElementRef;
   @ViewChild("botoes", {read: ElementRef, static: false}) botoes: ElementRef;
 
-  ngOnInit() {
-    
+  ngOnInit() {    
     this.animate();
   }
 
@@ -38,7 +44,6 @@ export class PersonalizarPage implements OnInit {
   }
   ionViewDidLeave() {
     this.menuCtrl.enable(true);
-
   }
 
   update() {

@@ -15,8 +15,9 @@ ion-fab-button {
 }
 
 .fundo{
-  --background: url('../../../assets/img/visaoglobal2.jpg')top center cover no-repeat;
+  --background: url(../../assets/img/visaoglobal2.jpg) top center cover no-repeat;
 }
+
 $categories: (
   ionic: var(--ion-color-primary),
   angular: #ac282b,

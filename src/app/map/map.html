@@ -1,0 +1,57 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons *ngIf="!showSearchbar" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="!ios && !showSearchbar"></ion-title>
+    <img src="assets/img/LogoVG.png" slot="end" style="width:240px; height:80px;" slot="start">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fundo" fullscreen="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Pagamentos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list #scheduleList *ngFor="let imovel of imoveis; let i of index">
+    <ion-item-group *ngIf="imovel.proprietario==false">
+      <ion-item-divider color="danger" sticky>
+        <ion-label>
+          {{imovel.endereco}} - {{imovel.bairro}}
+        </ion-label>
+      </ion-item-divider>
+      <ion-item *ngIf="imovel.contratos[0].boleto != ''" (click)="openPDF(imovel.contratos[0].boleto)">
+        <ion-label detail class="boleto">
+          <h3>Abrir boleto do próximo pagamento</h3>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngFor="let pagamento of imovel.contratos[0].historico">
+        <ion-label>
+          <h3>{{pagamento.pago | currency:'BRL'}} pagos em {{pagamento.pagamento | date:'dd/MM/yyyy'}}</h3>
+          <p>
+            Vencimento: {{pagamento.vencimento | date:'dd/MM/yyyy'}} - Recibo: {{pagamento.recibo}}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-list #scheduleList>
+    <ion-item-group *ngFor="let extrato of extratos">
+      <ion-item-divider  style="color:red" sticky>
+      </ion-item-divider>
+      <ion-item  (click)="openPDF(extrato.extrato)">
+        <ion-label detail class="extrato">
+          <h3>Abrir extrato {{extrato.data | date:'dd/MM/yyyy' }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-list-header [hidden]="true">
+    Nenhum imóvel encontrado
+  </ion-list-header>
+
+</ion-content>

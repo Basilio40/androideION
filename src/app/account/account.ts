@@ -1,12 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ApiLoginService } from './../services/api-service/api-login.service';
+import { Component, OnInit } from '@angular/core';
 import { Storage } from "@ionic/storage";
-import { Router } from '@angular/router';
-
-import { AlertController } from '@ionic/angular';
-
-import { UserData } from '../../providers/user-data';
-import { ApiLoginService } from '../../api-login.service';
-
 
 @Component({
   selector: 'page-account',
@@ -15,16 +9,17 @@ import { ApiLoginService } from '../../api-login.service';
 })
 export class AccountPage implements OnInit {
 
-  constructor (private storage: Storage, public loginService: ApiLoginService) {
+  dadosUsuario: any
 
+  constructor (
+    private storage: Storage, 
+    public loginService: ApiLoginService
+  ){
     loginService.loginEmitter$.subscribe(login => {
       console.log("AVISOU", login)
       login ? this.updateUser() : this.onLogout()
     })
   }
-
-  dadosUsuario: any
-  
 
   ngOnInit() {
     this.updateUser()

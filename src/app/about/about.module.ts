@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
+import { AboutPageRoutingModule } from './about-routing.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
+import { NgModule } from '@angular/core';
 import { AboutPage } from './about';
-import { PopoverPage } from '../about-popover/about-popover';
-import { AboutPageRoutingModule } from './about-routing.module';
 
 @NgModule({
   imports: [
@@ -14,8 +12,8 @@ import { AboutPageRoutingModule } from './about-routing.module';
     IonicModule,
     AboutPageRoutingModule
   ],
-  declarations: [AboutPage, PopoverPage],
-  entryComponents: [PopoverPage],
+  declarations: [AboutPage],
+  entryComponents: [],
   bootstrap: [AboutPage],
 })
 export class AboutModule {}

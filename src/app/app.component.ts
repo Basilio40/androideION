@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
+import { ApiLoginService } from './services/api-service/api-login.service';
+import { MenuController, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -10,47 +14,53 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   public selectedIndex = 0;
-  public appPages = [
+  appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Imoveis',
+      url: '/app/tabs/schedule',
+      icon: 'home'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Documentos',
+      url: '/app/tabs/speakers',
+      icon: 'document'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'Pagamentos',
+      url: '/app/tabs/map',
+      icon: 'logo-usd'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title: 'Chamado',
+      url: '/app/tabs/about',
+      icon: 'information-circle'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+      title: "Informes",
+      url: '/informes',
+      icon: 'trending-up'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  loggedIn = true;
+  dark = true;
 
   constructor(
-    private platform: Platform,
+    public loginService: ApiLoginService,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private toastCtrl: ToastController,
+    private navCtrl: NavController,
+    private menu: MenuController,
+    private statusBar: StatusBar,
+    private platform: Platform,
+    private storage: Storage,
+    private router: Router,
   ) {
     this.initializeApp();
+  }
+
+  async ngOnInit() {
   }
 
   initializeApp() {
@@ -60,10 +70,29 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+  updateLoggedInStatus(loggedIn: boolean) {
+    setTimeout(() => {
+      this.loggedIn = loggedIn;
+    }, 300);
+  }
+
+  listenForLoginEvents() {
+    window.addEventListener('user:login', () => {
+      console.log("ativou login");
+      this.updateLoggedInStatus(true);
+    });
+
+    window.addEventListener('user:signup', () => {
+      this.updateLoggedInStatus(true);
+    });
+
+    window.addEventListener('user:logout', () => {
+      this.updateLoggedInStatus(false);
+    });
+  }
+
+  logout() {
+    this.loginService.logout();
+    return this.navCtrl.navigateRoot('/login');
   }
 }
