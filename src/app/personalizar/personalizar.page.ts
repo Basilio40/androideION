@@ -22,7 +22,7 @@ export class PersonalizarPage implements OnInit {
   ){
     loginService.loginEmitter$.subscribe(login => {
       login ? this.update() : this.onLogout()
-    })
+    });    
   }
 
   public dados: any
@@ -34,16 +34,16 @@ export class PersonalizarPage implements OnInit {
   @ViewChild("txt", {read: ElementRef, static: false}) txt: ElementRef;
   @ViewChild("botoes", {read: ElementRef, static: false}) botoes: ElementRef;
 
-  ngOnInit() {    
+  ngOnInit() {
+    this.menuCtrl.enable(true);
     this.animate();
   }
 
   ionViewWillEnter(){
-    this.update()
-    this.menuCtrl.enable(false);
+    this.update()    
   }
-  ionViewDidLeave() {
-    this.menuCtrl.enable(true);
+
+  ionViewDidLeave(){
   }
 
   update() {
@@ -88,7 +88,7 @@ export class PersonalizarPage implements OnInit {
       .iterations(1)
       .addAnimation([anmA, anmB, anmC]);
       parent.play()
-    }, 500);
+    }, 800);
   }
 
   onLogout(){

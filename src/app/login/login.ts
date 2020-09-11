@@ -25,6 +25,7 @@ export class LoginPage{
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
   }
+  
   ionViewDidLeave() {
     this.menuCtrl.enable(true);
   }

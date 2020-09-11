@@ -25,3 +25,7 @@ ion-spinner{
 .saudacao, .txt, .botoes{
     opacity: 0;
 }
+
+ion-content{
+    --background: url('./../../assets/img/visaoglobal3.jpg') no-repeat center/cover fixed;
+}
