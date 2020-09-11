@@ -53,7 +53,7 @@ export class InformesPage implements OnInit {
     this.informes = [];
     this.storage.get('user').then((dados) => {
       console.log("Dados do storage", dados)
-      this.informes = JSON.parse(dados)['data']['informes']
+      this.informes = dados['data']['informes']
       console.log(this.informes)
     })
   }

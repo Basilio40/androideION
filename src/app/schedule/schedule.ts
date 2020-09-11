@@ -1,4 +1,4 @@
-import { AlertController, IonList, IonRouterOutlet, LoadingController, ModalController, ToastController, Config } from '@ionic/angular';
+import { AlertController, IonList, IonRouterOutlet, ModalController, ToastController, Config } from '@ionic/angular';
 import { ApiLoginService } from './../services/api-service/api-login.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Storage } from "@ionic/storage";
@@ -25,7 +25,6 @@ export class SchedulePage implements OnInit {
   imoveis: any = [];
 
   constructor(
-    public loadingCtrl: LoadingController,
     public routerOutlet: IonRouterOutlet,
     public loginService: ApiLoginService,
     public alertCtrl: AlertController,
@@ -58,7 +57,7 @@ export class SchedulePage implements OnInit {
     this.imoveis = [];
     this.storage.get('user').then((dados) => {
       console.log("Dados do storage", dados)
-      this.imoveis = JSON.parse(dados)['data']['imoveis']
+      this.imoveis = dados['data']['imoveis']
       console.log(this.imoveis)
     })
   }

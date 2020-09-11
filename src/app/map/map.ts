@@ -54,8 +54,8 @@ export class MapPage implements OnInit {
 
   updateImoveis() {
     this.storage.get('user').then((dados) => {
-      this.imoveis = JSON.parse(dados)['data']['imoveis'];
-      this.extratos = JSON.parse(dados)['data']['extratos']; 
+      this.imoveis = dados['data']['imoveis'];
+      this.extratos = dados['data']['extratos']; 
     })
   }
 

@@ -1,17 +1,16 @@
 ion-menu ion-content {
   --padding-top: 20px;
   --padding-bottom: 20px;
-
-
 }
 
 ion-content{
-  background-image: url('../assets/img/visaoglobal2.jpg');
-  //background-attachment: scroll;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  --background: url('./../assets/img/visaoglobal2.jpg') no-repeat center/cover fixed;
 }
+
+ion-menu {
+  --ion-text-color: var(--ion-color-dark);
+}
+
 ion-menu{
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
@@ -22,7 +21,7 @@ ion-menu ion-item {
 }
 
 ion-item.selected {
-  --color: var(--ion-color-primary);
+  --color: var(--ion-color-danger);
 }
 
 /*
@@ -52,11 +51,11 @@ ion-menu.md ion-item {
 }
 
 ion-menu.md ion-item.selected {
-  --background: url('../assets/img/visaoglobal2.jpg')top center;
+  --background: url('../assets/img/visaoglobal2.jpg') top center;
 }
 
 ion-menu.md ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
+  color: var(--ion-color-danger);
 }
 
 ion-menu.md ion-list-header,
@@ -94,5 +93,5 @@ ion-menu.ios ion-item ion-icon {
 }
 
 ion-menu.ios ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
+  color: var(--ion-color-danger);
 }

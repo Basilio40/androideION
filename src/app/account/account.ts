@@ -28,7 +28,7 @@ export class AccountPage implements OnInit {
   updateUser() {
     this.storage.get('user').then((dados) => {
       console.log("Dados do storage", dados)
-      this.dadosUsuario = JSON.parse(dados)
+      this.dadosUsuario = dados;
       console.log(this.dadosUsuario)
     })
   }

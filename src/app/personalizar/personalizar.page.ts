@@ -11,50 +11,53 @@ import { Storage } from '@ionic/storage';
 })
 
 export class PersonalizarPage implements OnInit {
+   
+  @ViewChild('saudacao', {read: ElementRef, static: false}) saudacao : ElementRef;
+  @ViewChild('botoes', {read: ElementRef, static: false}) botoes: ElementRef;
+  @ViewChild('txt', {read: ElementRef, static: false}) txt: ElementRef;
+
+  imoveisProprietario: any;
+  imoveisInquilino: any;
+  dados: any;
 
   constructor(
     private animationCtrl: AnimationController, 
-    public loginService: ApiLoginService,
-    public menuCtrl: MenuController, 
+    private loginService: ApiLoginService,
+    private menuCtrl: MenuController, 
     private navCtrl: NavController,
     private storage: Storage,
-    public router: Router, 
+    private router: Router, 
   ){
     loginService.loginEmitter$.subscribe(login => {
       login ? this.update() : this.onLogout()
     });    
   }
 
-  public dados: any
-  imoveisProprietario: any
-  imoveisInquilino: any
-
-   
-  @ViewChild("saudacao", {read: ElementRef, static: false}) saudacao : ElementRef;
-  @ViewChild("txt", {read: ElementRef, static: false}) txt: ElementRef;
-  @ViewChild("botoes", {read: ElementRef, static: false}) botoes: ElementRef;
-
   ngOnInit() {
     this.menuCtrl.enable(true);
-    this.animate();
+    this.update();
   }
 
-  ionViewWillEnter(){
-    this.update()    
+  ionViewWillEnter(){    
   }
 
-  ionViewDidLeave(){
+  ionViewDidEnter(){
+    setTimeout(() => {
+      this.animate();      
+    }, 111);
   }
 
-  update() {
+  async update() {
     this.dados = null;
-    this.storage.get('user').then((dados) => {
-      this.dados = JSON.parse(dados)
-      this.imoveisInquilino = this.dados['data']['imoveis'].filter(x => !x.proprietario)
-      this.imoveisProprietario = this.dados['data']['imoveis'].filter(x => x.proprietario)
-      console.log(this.dados)
-      console.log("Inquilino", this.imoveisInquilino)
-      console.log("Proprietario", this.imoveisProprietario)
+    await this.storage.get('user').then((dados) => {
+      this.dados = dados;
+      console.log('this.dados: ', this.dados);
+      if(this.dados){
+        this.imoveisInquilino = this.dados['data']['imoveis'].filter(x => !x.proprietario)
+        this.imoveisProprietario = this.dados['data']['imoveis'].filter(x => x.proprietario)        
+        console.log('Inquilino', this.imoveisInquilino)
+        console.log('Proprietario', this.imoveisProprietario)
+      }
     })
   }
 
@@ -88,7 +91,7 @@ export class PersonalizarPage implements OnInit {
       .iterations(1)
       .addAnimation([anmA, anmB, anmC]);
       parent.play()
-    }, 800);
+    }, 333);
   }
 
   onLogout(){
@@ -108,7 +111,7 @@ export class PersonalizarPage implements OnInit {
   }
 
   acessarSistema(){
-    this.storage.set('user', JSON.stringify(this.dados)).then(() => {
+    this.storage.set('user', this.dados).then(() => {
       this.loginService.avisaLogin(true)
       this.router.navigate(['/app/tabs/schedule'])
     })

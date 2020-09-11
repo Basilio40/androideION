@@ -25,13 +25,13 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-// .ios {
-//     --background: url('./assets/img/visaoglobal2.jpg') top center cover no-repeat;
-// }
-
-// .fundo{
-//     --background: url('./assets/img/visaoglobal3.jpg') top center cover no-repeat;
-// }
+.custom-loader-class{
+    opacity: 0.8;
+    color: #BB4040;
+    --background:#EDEDED;
+    --spinner-color:#BB4040;
+    border-radius: 12px;
+}
 
 .small{
     font-size: 12px;

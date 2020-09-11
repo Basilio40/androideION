@@ -30,7 +30,7 @@ export class ApiLoginService {
           console.log(this.dadosUsuario)
           this.dadosUsuario = dados
           console.log(this.dadosUsuario)
-          this.storage.set('user', JSON.stringify(this.dadosUsuario)).then(() => this.avisaLogin(true))
+          this.storage.set('user', this.dadosUsuario).then(() => this.avisaLogin(true))
         }
         resolve(dados)
       })

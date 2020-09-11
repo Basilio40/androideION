@@ -42,7 +42,10 @@ export class LoginPage{
   async onLogin(form: NgForm) {
     this.submitted = true
     if (form.valid) {
-      const loading = await this.loadingController.create({message: 'Por favor, aguarde.'})
+      const loading = await this.loadingController.create({
+        message: 'Por favor, aguarde.',
+        cssClass:'custom-loader-class',
+      })
       await loading.present()
       this.loginService.login(this.login).then(
         data => {
