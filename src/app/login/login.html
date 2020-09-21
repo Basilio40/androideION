@@ -11,8 +11,8 @@
   <ion-card class="login-logo shadow" >
     <form #loginForm="ngForm" novalidate>
 
-      <ion-list>
-        <ion-item >
+      <ion-list lines="none">
+        <ion-item>
           <ion-label position="stacked" color="danger"  mode="ios" >CNPJ/CPF</ion-label>
           <ion-input [(ngModel)]="login.email" name="username" type="email" #username="ngModel" spellcheck="false" autocapitalize="off"
             required >
