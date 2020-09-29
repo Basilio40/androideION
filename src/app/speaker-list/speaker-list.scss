@@ -14,9 +14,13 @@ ion-fab-button {
   --background-activated: var(--ion-color-step-250, #d9d9d9);
 }
 
-.fundo{
-  --background: url(../../assets/img/visaoglobal2.jpg) top center cover no-repeat;
+ion-content{
+  --background: url('./../../assets/img/visaoglobal2.jpg') no-repeat center/cover fixed;
 }
+
+// .fundo{
+//   --background: url(./../../assets/img/visaoglobal2.jpg) top center cover no-repeat;
+// }
 
 $categories: (
   ionic: var(--ion-color-primary),

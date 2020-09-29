@@ -3,7 +3,7 @@
   vertical-align: center;
   min-height: 200px;
   text-align: center;
-  background: #DCDCDC;
+  background: #DCDCDC;  
   opacity: 0.7;
   width: 90%;
 }
@@ -27,11 +27,15 @@
   color: #000;
 }
 
-.shadow{
-  color: #0C0C0D;
-  border-bottom: solid 5px;
-}
+// .shadow{
+//   color: #0C0C0D;
+//   border-bottom: solid 5px;
+// }
 
 ion-content{
   --background: url('./../../assets/img/visaoglobal3.jpg') no-repeat center/cover fixed;
+}
+
+ion-item{
+  --background: #DCDCDC;
 }

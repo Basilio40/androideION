@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Visão Global</string>
+    <string name="title_activity_main">Visão Global</string>
+    <string name="package_name">com.sandro.bispo.visao</string>
+    <string name="custom_url_scheme">com.sandro.bispo.visao</string>
+</resources>
