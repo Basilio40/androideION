@@ -2,6 +2,7 @@ import { LoadingController, AlertController, MenuController } from '@ionic/angul
 import { ApiLoginService } from './../services/api-service/api-login.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -14,12 +15,17 @@ export class LoginPage{
   submitted = false;
 
   constructor(
-    public router: Router,
-    public alertController: AlertController,
     public loadingController: LoadingController,
+    public alertController: AlertController,
     public loginService: ApiLoginService,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    private storage: Storage,
+    public router: Router
   ){    
+  }
+
+  ngOnInit() {
+    this.isLoggedIn();
   }
 
   ionViewWillEnter() {
@@ -28,15 +34,6 @@ export class LoginPage{
   
   ionViewDidLeave() {
     this.menuCtrl.enable(true);
-  }
-
-  async presentAlert(titulo, mensagem) {
-    const alert = await this.alertController.create({
-      header: titulo,
-      message: mensagem,
-      buttons: ['Fechar']
-    });
-    await alert.present();
   }
 
   async onLogin(form: NgForm) {
@@ -50,16 +47,38 @@ export class LoginPage{
       this.loginService.login(this.login).then(
         data => {
           if (data.status) {
-            this.router.navigate(['/personalizar'])
+            this.storage.set('userData', this.login.email);
+            this.router.navigate(['/personalizar']);
           } else {
-            this.presentAlert("Erro", 'Por favor verifique se você digitou o email e senha corretamente.')
+            this.presentAlert("Erro", 'Por favor, verifique o CPF é inválido.');
+            this.router.navigate(['/login']);
           }
         }
       ).catch((err) => {
         console.log("Erro", JSON.stringify(err))
-        this.presentAlert("Erro", "Por favor, verifique se você está conectado à internet.")
+        this.presentAlert("Erro", "Por favor, verifique se você está conectado à internet.");
       }).finally(() => loading.dismiss())
     }
+  }
+
+  async presentAlert(titulo, mensagem) {
+    const alert = await this.alertController.create({
+      header: titulo,
+      message: mensagem,
+      buttons: ['Fechar']
+    });
+    await alert.present();
+  }
+
+  isLoggedIn() {
+    this.storage.get('userData').then((data)=>{
+      if (data!=undefined) {
+        this.router.navigate(['/personalizar']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+      console.log('IsLoggedIn: ', data);
+    });
   }
 
   onSignup() {
