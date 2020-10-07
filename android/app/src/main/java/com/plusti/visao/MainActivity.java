@@ -1,4 +1,4 @@
-package com.sandro.bispo.visao;
+package com.plusti.visao;
 
 import android.os.Bundle;
 

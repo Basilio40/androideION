@@ -1,6 +1,7 @@
 {
-  "appId": "com.sandro.bispo.visao",
+  "appId": "com.plusti.visao",
   "appName": "Visão Global",
+  "version": "1.0.0",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

@@ -49,10 +49,10 @@ export class AboutPage {
     })
   }
 
-  openPDF(url){
+  openPDF(url?){
     const browser = this.iab.create("https://docs.google.com/viewer?url=" + encodeURIComponent(url), '_system')
   }
-  openWhats(url){
+  openWhats(url?){
     const browser = this.iab.create("https://api.whatsapp.com/send?1=pt_BR&phone=5511940005753"+ encodeURIComponent(url), '_system')
   }
 }
